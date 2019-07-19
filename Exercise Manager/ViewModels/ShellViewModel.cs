@@ -8,7 +8,7 @@ namespace Exercise.Manager.ViewModels
     {
         public ShellViewModel(IMainViewModel mainViewModel)
         {
-            DisplayName = "Exercise Manager";
+            DisplayName = "EM";
 
             ActivateItem(mainViewModel);
         }
