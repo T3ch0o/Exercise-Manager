@@ -12,6 +12,8 @@ namespace Exercise.Manager
         {
             dependencyRegistrar.Singleton<IShellViewModel, ShellViewModel>();
             dependencyRegistrar.Singleton<IMainViewModel, MainViewModel>();
+            dependencyRegistrar.Singleton<IDashboardViewModel, DashboardViewModel>();
+            dependencyRegistrar.Singleton<IExercisesViewModel, ExercisesViewModel>();
         }
     }
 }
