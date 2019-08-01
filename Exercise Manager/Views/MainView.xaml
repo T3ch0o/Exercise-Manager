@@ -25,8 +25,8 @@
                         <RowDefinition Height="*" Name="RowDefinition1" />
                     </Grid.RowDefinitions>
                     <StackPanel>
-                        <TextBlock>EM</TextBlock>
-                        <TabPanel IsItemsHost="True" Name="HeaderPanel" Margin="2,2,2,0" Panel.ZIndex="1" KeyboardNavigation.TabIndex="1" Grid.Column="0" Grid.Row="0" />
+                        <TextBlock Width="200" Height="100" Foreground="#6c913b" Background="#c0c000" FontFamily="Anurati" FontSize="80" TextAlignment="Center">EM</TextBlock>
+                        <TabPanel IsItemsHost="True" Name="HeaderPanel" Margin="20,20,2,0" Panel.ZIndex="1" KeyboardNavigation.TabIndex="1" Grid.Column="0" Grid.Row="0" />
                     </StackPanel>
 
                     <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}" Name="ContentPanel" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Column="0" Grid.Row="1">
