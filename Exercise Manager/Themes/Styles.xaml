@@ -32,4 +32,9 @@
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="StrokeThickness" Value="20"></Setter>
     </Style>
+
+    <Style x:Key="HeaderTabTitle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="24" />
+    </Style>
 </ResourceDictionary>
