@@ -2,35 +2,66 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ViewModels="clr-namespace:Exercise.Manager.ViewModels"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:cal="http://www.caliburnproject.org" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance ViewModels:MainViewModel}"
              mc:Ignorable="d">
-    <TabControl TabStripPlacement="Left" HorizontalAlignment="Stretch" x:Name="Items">
+    <TabControl x:Name="Items"
+                Padding="0 0 0 0"
+                HorizontalAlignment="Stretch"
+                TabStripPlacement="Left">
         <TabControl.Template>
 
-            <ControlTemplate TargetType="TabControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+            <ControlTemplate xmlns:s="clr-namespace:System;assembly=mscorlib" TargetType="TabControl">
 
-                <Grid ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
+                <Grid ClipToBounds="True"
+                      KeyboardNavigation.TabNavigation="Local"
+                      SnapsToDevicePixels="True">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="ColumnDefinition0" />
-                        <ColumnDefinition Width="0" Name="ColumnDefinition1" />
+                        <ColumnDefinition Name="ColumnDefinition0"/>
+                        <ColumnDefinition Name="ColumnDefinition1" Width="0"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" Name="RowDefinition0" />
-                        <RowDefinition Height="*" Name="RowDefinition1" />
+                        <RowDefinition Name="RowDefinition0" Height="Auto"/>
+                        <RowDefinition Name="RowDefinition1" Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel>
-                        <TextBlock Width="200" Height="100" Foreground="#6c913b" Background="#c0c000" FontFamily="Anurati" FontSize="80" TextAlignment="Center">EM</TextBlock>
-                        <TabPanel IsItemsHost="True" Name="HeaderPanel" Margin="20,20,2,0" Panel.ZIndex="1" KeyboardNavigation.TabIndex="1" Grid.Column="0" Grid.Row="0" />
+                    <StackPanel Background="#141414">
+                        <TextBlock Width="175"
+                                   Height="120"
+                                   VerticalAlignment="Bottom"
+                                   Background="#c0c000"
+                                   FontFamily="Anurati"
+                                   FontSize="80"
+                                   Foreground="#6c913b"
+                                   TextAlignment="Center">
+                            EM
+                        </TextBlock>
+                        <TabPanel Name="HeaderPanel"
+                                  Panel.ZIndex="1"
+                                  Background="#c0c000"
+                                  IsItemsHost="True"
+                                  KeyboardNavigation.TabIndex="1"/>
                     </StackPanel>
 
-                    <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}" Name="ContentPanel" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Column="0" Grid.Row="1">
-                        <ContentPresenter Content="{TemplateBinding TabControl.SelectedContent}" ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}" ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}" ContentSource="SelectedContent" Name="PART_SelectedContentHost" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                    <Border Name="ContentPanel"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="30"
+                            Background="#292c33"
+                            KeyboardNavigation.DirectionalNavigation="Contained"
+                            KeyboardNavigation.TabIndex="2"
+                            KeyboardNavigation.TabNavigation="Local">
+                        <ContentPresenter Name="PART_SelectedContentHost"
+                                          Margin="{TemplateBinding Control.Padding}"
+                                          Content="{TemplateBinding TabControl.SelectedContent}"
+                                          ContentSource="SelectedContent"
+                                          ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}"
+                                          ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}"
+                                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
                     </Border>
                 </Grid>
 
@@ -46,10 +77,10 @@
 
                         <Setter TargetName="RowDefinition1" Property="RowDefinition.Height" Value="Auto"/>
 
-                        <Setter TargetName="HeaderPanel" Property="FrameworkElement.Margin" Value="2,0,2,2"/>
+                        <Setter TargetName="HeaderPanel" Property="FrameworkElement.Margin" Value="0"/>
 
                         <Trigger.Value>
-                            <x:Static Member="Dock.Bottom" />
+                            <x:Static Member="Dock.Bottom"/>
                         </Trigger.Value>
                     </Trigger>
 
@@ -59,9 +90,7 @@
 
                         <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0"/>
 
-                        <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="0">
-
-                        </Setter>
+                        <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="0"/>
 
                         <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1"/>
 
@@ -73,35 +102,10 @@
 
                         <Setter TargetName="RowDefinition1" Property="RowDefinition.Height" Value="0"/>
 
-                        <Setter TargetName="HeaderPanel" Property="FrameworkElement.Margin" Value="2,2,0,2"/>
+                        <Setter TargetName="HeaderPanel" Property="FrameworkElement.Margin" Value="0"/>
 
                         <Trigger.Value>
-                            <x:Static Member="Dock.Left" />
-                        </Trigger.Value>
-                    </Trigger>
-
-                    <Trigger Property="TabControl.TabStripPlacement">
-
-                        <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0"/>
-
-                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0"/>
-
-                        <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1"/>
-
-                        <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0"/>
-
-                        <Setter TargetName="ColumnDefinition0" Property="ColumnDefinition.Width" Value="*"/>
-
-                        <Setter TargetName="ColumnDefinition1" Property="ColumnDefinition.Width" Value="Auto"/>
-
-                        <Setter TargetName="RowDefinition0" Property="RowDefinition.Height" Value="*"/>
-
-                        <Setter TargetName="RowDefinition1" Property="RowDefinition.Height" Value="0"/>
-
-                        <Setter TargetName="HeaderPanel" Property="FrameworkElement.Margin" Value="0,2,2,2"/>
-
-                        <Trigger.Value>
-                            <x:Static Member="Dock.Right" />
+                            <x:Static Member="Dock.Left"/>
                         </Trigger.Value>
                     </Trigger>
 
@@ -110,7 +114,7 @@
                         <Setter Property="TextElement.Foreground">
 
                             <Setter.Value>
-                                <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" />
+                                <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}"/>
                             </Setter.Value>
                         </Setter>
 
@@ -127,12 +131,49 @@
                 <Setter Property="Template">
                     <Setter.Value>
 
-                        <ControlTemplate TargetType="TabItem" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                        <ControlTemplate xmlns:s="clr-namespace:System;assembly=mscorlib" TargetType="TabItem">
 
                             <Grid SnapsToDevicePixels="True">
+                                <Border BorderBrush="#171e22" BorderThickness="0 0 14 0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                <Border BorderThickness="1,1,1,0" Padding="{TemplateBinding Control.Padding}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}" Name="Bd">
-                                    <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding HeaderedContentControl.Header}" ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}" ContentStringFormat="{TemplateBinding HeaderedContentControl.HeaderStringFormat}" ContentSource="Header" Name="Content" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                        <Border Name="Bd"
+                                                Grid.ColumnSpan="2"
+                                                Padding="50"
+                                                Background="#273238">
+                                            <ContentPresenter Name="Content"
+                                                              HorizontalAlignment="Stretch"
+                                                              VerticalAlignment="Stretch"
+                                                              Content="{TemplateBinding HeaderedContentControl.Header}"
+                                                              ContentSource="Header"
+                                                              ContentStringFormat="{TemplateBinding HeaderedContentControl.HeaderStringFormat}"
+                                                              ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                                              RecognizesAccessKey="True"
+                                                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+
+
+                                        </Border>
+
+                                        <Polygon x:Name="Poly"
+                                                 Grid.Column="1"
+                                                 Margin="0 15 0 0"
+                                                 VerticalAlignment="Center"
+                                                 Fill="#171e22"
+                                                 Points="50,0 50,50 35,25"
+                                                 Stroke="#171e22"
+                                                 StrokeDashArray="1 0"
+                                                 StrokeThickness="8">
+                                            <Polygon.Style>
+                                                <Style TargetType="Polygon">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </Style>
+                                            </Polygon.Style>
+                                        </Polygon>
+                                    </Grid>
                                 </Border>
                             </Grid>
 
@@ -143,17 +184,15 @@
                                     <Setter TargetName="Bd" Property="Panel.Background">
 
                                         <Setter.Value>
-
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                                 <LinearGradientBrush.GradientStops>
-                                                    <GradientStop Color="#FFEAF6FD" Offset="0.15" />
-                                                    <GradientStop Color="#FFD9F0FC" Offset="0.5" />
-                                                    <GradientStop Color="#FFBEE6FD" Offset="0.5" />
-                                                    <GradientStop Color="#FFA7D9F5" Offset="1" />
+                                                    <GradientStop Offset="1" Color="#222c31"/>
                                                 </LinearGradientBrush.GradientStops>
                                             </LinearGradientBrush>
                                         </Setter.Value>
                                     </Setter>
+
+                                    <Setter TargetName="Poly" Property="Visibility" Value="Visible"/>
 
                                     <Trigger.Value>
                                         <s:Boolean>True</s:Boolean>
@@ -169,7 +208,8 @@
                                         </Setter.Value>
                                     </Setter>
 
-                                    <Setter TargetName="Bd" Property="Panel.Background" Value="#FFF9F9F9"/>
+                                    <Setter TargetName="Bd" Property="Panel.Background" Value="#273238"/>
+                                    <Setter TargetName="Poly" Property="Visibility" Value="Visible"/>
 
                                     <Trigger.Value>
                                         <s:Boolean>True</s:Boolean>
@@ -195,33 +235,16 @@
                                         </Condition>
                                     </MultiTrigger.Conditions>
 
-                                    <Setter TargetName="Bd" Property="Border.BorderBrush" Value="#FF3C7FB1"/>
+                                    <Setter TargetName="Bd" Property="Border.BorderBrush" Value="Transparent"/>
+                                    <Setter TargetName="Poly" Property="Opacity" Value="0.5"/>
                                 </MultiTrigger>
 
                                 <Trigger Property="TabItem.TabStripPlacement">
 
-                                    <Setter TargetName="Bd" Property="Border.BorderThickness" Value="1,0,1,1"/>
+                                    <Setter TargetName="Bd" Property="Border.BorderThickness" Value="0,0,0,1"/>
 
                                     <Trigger.Value>
-                                        <x:Static Member="Dock.Bottom" />
-                                    </Trigger.Value>
-                                </Trigger>
-
-                                <Trigger Property="TabItem.TabStripPlacement">
-
-                                    <Setter TargetName="Bd" Property="Border.BorderThickness" Value="1,1,0,1"/>
-
-                                    <Trigger.Value>
-                                        <x:Static Member="Dock.Left" />
-                                    </Trigger.Value>
-                                </Trigger>
-
-                                <Trigger Property="TabItem.TabStripPlacement">
-
-                                    <Setter TargetName="Bd" Property="Border.BorderThickness" Value="0,1,1,1"/>
-
-                                    <Trigger.Value>
-                                        <x:Static Member="Dock.Right" />
+                                        <x:Static Member="Dock.Left"/>
                                     </Trigger.Value>
                                 </Trigger>
 
@@ -235,98 +258,29 @@
                                                 <s:Boolean>True</s:Boolean>
                                             </Condition.Value>
                                         </Condition>
-                                        <Condition Property="TabItem.TabStripPlacement" Value="{x:Static Dock.Top}" />
+                                        <Condition Property="TabItem.TabStripPlacement" Value="{x:Static Dock.Left}"/>
                                     </MultiTrigger.Conditions>
 
                                     <Setter Property="FrameworkElement.Margin">
 
                                         <Setter.Value>
-                                            <Thickness>-2,-2,-2,-1</Thickness>
+                                            <Thickness>0</Thickness>
                                         </Setter.Value>
                                     </Setter>
 
-                                    <Setter TargetName="Content" Property="FrameworkElement.Margin" Value="0,0,0,1"/>
-                                </MultiTrigger>
-
-                                <MultiTrigger>
-
-                                    <MultiTrigger.Conditions>
-
-                                        <Condition Property="Selector.IsSelected">
-
-                                            <Condition.Value>
-                                                <s:Boolean>True</s:Boolean>
-                                            </Condition.Value>
-                                        </Condition>
-                                        <Condition Property="TabItem.TabStripPlacement" Value="{x:Static Dock.Bottom}" />
-                                    </MultiTrigger.Conditions>
-
-                                    <Setter Property="FrameworkElement.Margin">
-
-                                        <Setter.Value>
-                                            <Thickness>-2,-1,-2,-2</Thickness>
-                                        </Setter.Value>
-                                    </Setter>
-
-                                    <Setter TargetName="Content" Property="FrameworkElement.Margin" Value="0,1,0,0"/>
-                                </MultiTrigger>
-
-                                <MultiTrigger>
-
-                                    <MultiTrigger.Conditions>
-
-                                        <Condition Property="Selector.IsSelected">
-
-                                            <Condition.Value>
-                                                <s:Boolean>True</s:Boolean>
-                                            </Condition.Value>
-                                        </Condition>
-                                        <Condition Property="TabItem.TabStripPlacement" Value="{x:Static Dock.Left}" />
-                                    </MultiTrigger.Conditions>
-
-                                    <Setter Property="FrameworkElement.Margin">
-
-                                        <Setter.Value>
-                                            <Thickness>-2,-2,-1,-2</Thickness>
-                                        </Setter.Value>
-                                    </Setter>
-
-                                    <Setter TargetName="Content" Property="FrameworkElement.Margin" Value="0,0,1,0"/>
-                                </MultiTrigger>
-
-                                <MultiTrigger>
-
-                                    <MultiTrigger.Conditions>
-
-                                        <Condition Property="Selector.IsSelected">
-
-                                            <Condition.Value>
-                                                <s:Boolean>True</s:Boolean>
-                                            </Condition.Value>
-                                        </Condition>
-                                        <Condition Property="TabItem.TabStripPlacement" Value="{x:Static Dock.Right}" />
-                                    </MultiTrigger.Conditions>
-
-                                    <Setter Property="FrameworkElement.Margin">
-
-                                        <Setter.Value>
-                                            <Thickness>-1,-2,-2,-2</Thickness>
-                                        </Setter.Value>
-                                    </Setter>
-
-                                    <Setter TargetName="Content" Property="FrameworkElement.Margin" Value="1,0,0,0"/>
+                                    <Setter TargetName="Content" Property="FrameworkElement.Margin" Value="0"/>
                                 </MultiTrigger>
 
                                 <Trigger Property="UIElement.IsEnabled">
 
-                                    <Setter TargetName="Bd" Property="Panel.Background" Value="#FFF4F4F4"/>
+                                    <Setter TargetName="Bd" Property="Panel.Background" Value="Transparent"/>
 
-                                    <Setter TargetName="Bd" Property="Border.BorderBrush" Value="#FFC9C7BA"/>
+                                    <Setter TargetName="Bd" Property="Border.BorderBrush" Value="Transparent"/>
 
                                     <Setter Property="TextElement.Foreground">
 
                                         <Setter.Value>
-                                            <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" />
+                                            <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}"/>
                                         </Setter.Value>
                                     </Setter>
 
@@ -343,7 +297,9 @@
 
         <TabControl.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding Title}"/>
+                <TextBlock Foreground="White"
+                           Text="{Binding Title}"
+                           TextAlignment="center"/>
             </DataTemplate>
         </TabControl.ItemTemplate>
     </TabControl>
