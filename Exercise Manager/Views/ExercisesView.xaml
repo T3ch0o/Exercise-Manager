@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Exercise.Manager.Views.ExercisesView">
     <StackPanel>
-        <TextBlock Text="{Binding Title}"></TextBlock>
+        <TextBlock Style="{StaticResource HeaderTabTitle}" Text="{Binding Title}"></TextBlock>
 
     </StackPanel>
 </UserControl>
